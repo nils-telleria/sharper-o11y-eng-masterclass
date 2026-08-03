@@ -38,4 +38,3 @@ client.Do();
 span?.Stop();
 
 Console.WriteLine("FIXED: this trace has 1 activity (handle_request); vendor internals were never created.");
-provider.ForceFlush(5_000);

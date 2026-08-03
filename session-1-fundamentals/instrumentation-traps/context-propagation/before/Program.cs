@@ -17,7 +17,6 @@ root?.Stop();
 
 Console.WriteLine("BUG: ValidateOrder has no ActivitySource parameter, so its activity starts a new trace instead of joining this one.");
 
-provider.ForceFlush(5_000);
 
 // ValidateOrder takes no ActivitySource or parent context, so it cannot derive
 // a child activity from the caller's.

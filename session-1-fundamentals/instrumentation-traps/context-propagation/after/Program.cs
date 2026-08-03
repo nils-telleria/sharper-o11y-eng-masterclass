@@ -17,7 +17,6 @@ root?.Stop();
 
 Console.WriteLine("FIXED: ValidateOrder uses Activity.Current as its parent context, so it joins the same trace.");
 
-provider.ForceFlush(5_000);
 
 // ValidateOrder takes activitySource and lets StartActivity pick up
 // Activity.Current as the implicit parent — no explicit parentContext needed.

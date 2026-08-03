@@ -39,4 +39,3 @@ client.Do();
 span?.Stop();
 
 Console.WriteLine("BUG: this trace has 5 activities (handle_request + 4 noisy vendor internals).");
-provider.ForceFlush(5_000);

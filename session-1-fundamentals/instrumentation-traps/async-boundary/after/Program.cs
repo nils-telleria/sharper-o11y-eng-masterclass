@@ -6,6 +6,7 @@
 using System.Diagnostics;
 using System.Threading.Channels;
 using DemoTrace;
+using OpenTelemetry;
 using OpenTelemetry.Context.Propagation;
 
 const string ServiceName = "instrumentation-traps-async-boundary-after";
@@ -14,7 +15,6 @@ var activitySource = new ActivitySource(ServiceName);
 using var provider = DemoTracing.Setup(ServiceName);
 
 // message carries an explicit trace-context carrier alongside the payload.
-record Message(string OrderId, Dictionary<string, string> Carrier);
 
 var propagator = Propagators.DefaultTextMapPropagator;
 var channel = Channel.CreateBounded<Message>(1);
@@ -60,4 +60,6 @@ produceSpan?.Stop();
 await consumed.Task;
 Console.WriteLine("FIXED: the carrier crossed the channel boundary, so the consumer's activity joins the producer's trace.");
 
-provider.ForceFlush(5_000);
+
+// message carries an explicit trace-context carrier alongside the payload.
+record Message(string OrderId, Dictionary<string, string> Carrier);

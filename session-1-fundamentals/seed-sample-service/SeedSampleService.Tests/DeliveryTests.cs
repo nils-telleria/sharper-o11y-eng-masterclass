@@ -42,15 +42,18 @@ public class DeliveryTests
     public void Seeder_DeliversEveryTraceViaExporter()
     {
         var exported = new List<Activity>();
+        // Unique source name prevents cross-contamination when test classes run
+        // in parallel and share the same ActivitySource name.
+        var sourceName = $"sample-service-delivery-{Guid.NewGuid():N}";
 
         // Use the same MaxQueueSize as the seeder to make the test meaningful.
         using var provider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("sample-service"))
-            .AddSource("sample-service")
+            .AddSource(sourceName)
             .AddInMemoryExporter(exported)
             .Build()!;
 
-        var activitySource = new ActivitySource("sample-service");
+        var activitySource = new ActivitySource(sourceName);
         var now = DateTimeOffset.UtcNow;
         var window = TimeSpan.FromHours(4);
         const int chunk = 400;

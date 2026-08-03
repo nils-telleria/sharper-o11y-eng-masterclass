@@ -15,6 +15,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using OpenTelemetry;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
@@ -58,8 +59,8 @@ public class ProgramTests : IClassFixture<OtelQuickstartFactory>
             new HttpRequestMessage(HttpMethod.Post, "/api/checkout"),
             HttpStatusCode.Created);
 
-        var roots = spans.Where(s => !s.ParentId.HasValue || s.ParentId == default).ToList();
-        var children = spans.Where(s => s.ParentId.HasValue && s.ParentId != default).ToList();
+        var roots = spans.Where(s => s.ParentSpanId.Equals(default(ActivitySpanId))).ToList();
+        var children = spans.Where(s => !s.ParentSpanId.Equals(default(ActivitySpanId))).ToList();
 
         // One root, always. A request with no inbound traceparent starts its
         // own trace; if the request activity ever gained a parent here, every
@@ -144,11 +145,13 @@ public class OtelQuickstartFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureServices(services =>
         {
-            // Add a SimpleExporter (sync, no queue) so activities land in the
-            // list immediately when they end — equivalent to Go's
+            // Use SimpleActivityExportProcessor (synchronous) so activities land
+            // in the list immediately when they end — equivalent to Go's
             // sdktrace.WithSyncer(exporter).
             services.ConfigureOpenTelemetryTracerProvider(tracing =>
-                tracing.AddInMemoryExporter(ExportedActivities));
+                tracing.AddProcessor(
+                    new SimpleActivityExportProcessor(
+                        new InMemoryExporter<Activity>(ExportedActivities))));
         });
     }
 }

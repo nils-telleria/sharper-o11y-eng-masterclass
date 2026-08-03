@@ -13,9 +13,6 @@ var activitySource = new ActivitySource(ServiceName);
 
 using var provider = DemoTracing.Setup(ServiceName);
 
-// message is what crosses the queue boundary — payload only.
-record Message(string OrderId);
-
 var channel = Channel.CreateBounded<Message>(1);
 var consumed = new TaskCompletionSource();
 
@@ -38,4 +35,6 @@ produceSpan?.Stop();
 await consumed.Task;
 Console.WriteLine("BUG: the channel only carried the payload, so the consumer's activity is a disconnected new trace.");
 
-provider.ForceFlush(5_000);
+
+// message is what crosses the queue boundary — payload only.
+record Message(string OrderId);

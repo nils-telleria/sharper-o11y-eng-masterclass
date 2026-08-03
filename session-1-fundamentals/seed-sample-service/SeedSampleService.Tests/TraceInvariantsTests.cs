@@ -18,14 +18,17 @@ public class TraceInvariantsTests
     public void SimulateCheckout_TraceInvariants()
     {
         var exportedActivities = new List<Activity>();
+        // Use a unique source name to prevent cross-test contamination when
+        // multiple test classes share the same ActivitySource name.
+        var sourceName = $"sample-service-invariants-{Guid.NewGuid():N}";
 
         using var provider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("test"))
-            .AddSource("sample-service")
+            .AddSource(sourceName)
             .AddInMemoryExporter(exportedActivities)
             .Build()!;
 
-        var activitySource = new ActivitySource("sample-service");
+        var activitySource = new ActivitySource(sourceName);
         var now = DateTimeOffset.UtcNow;
         const int iterations = 500;
 
@@ -41,8 +44,12 @@ public class TraceInvariantsTests
 
         provider.ForceFlush();
 
+        // Snapshot the list before iterating to avoid concurrent modification
+        // from the background batch-export thread.
+        var snapshot = exportedActivities.ToList();
+
         // Group by trace ID.
-        var byTrace = exportedActivities.GroupBy(a => a.TraceId).ToList();
+        var byTrace = snapshot.GroupBy(a => a.TraceId).ToList();
         Assert.Equal(iterations, byTrace.Count);
 
         bool sawSuccess = false, sawFailure = false, sawSlowInventory = false;
@@ -74,7 +81,7 @@ public class TraceInvariantsTests
 
             foreach (var child in children)
             {
-                Assert.True(child.StartTimeUtc <= child.Duration + child.StartTimeUtc,
+                Assert.True(child.StartTimeUtc <= child.StartTimeUtc + child.Duration,
                     $"Activity {child.DisplayName} ends before it starts");
 
                 if (child.DisplayName == "inventory_check")
