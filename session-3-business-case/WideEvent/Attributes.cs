@@ -77,7 +77,7 @@ public static class EventAttributes
     public static int Count(Event e)
     {
         // Base attributes always present.
-        int count = 24;
+        int count = 27;
         // App + version (mobile only)
         if (e.App != "") count += 2;
         // Error fields
