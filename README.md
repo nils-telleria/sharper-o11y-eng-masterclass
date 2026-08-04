@@ -33,7 +33,7 @@ make verify      # format-check, build, test across every project
 make tidy        # dotnet restore across every project
 ```
 
-The solution file (`sharper-o11y-eng-masterclass.sln`) references every project.
+The solution file (`sharper-o11y-eng-masterclass.slnx`) references every project.
 
 ## C# / .NET specifics
 
