@@ -22,7 +22,7 @@ var activitySource = new ActivitySource(ServiceName);
 
 using var provider = SetupTracing();
 
-var count = EnvInt("SEED_COUNT", 400);
+var count = EnvInt("SEED_COUNT", 2500);
 var window = EnvDuration("SEED_WINDOW", TimeSpan.FromHours(4));
 var now = DateTimeOffset.UtcNow;
 
