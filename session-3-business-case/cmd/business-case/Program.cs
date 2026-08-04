@@ -29,7 +29,7 @@ for (int i = 0; i < args.Length; i++)
         "--unplanned-share" => inputs with { UnplannedWorkShare = double.Parse(args[++i]) },
         "--revenue-per-hour" => inputs with { RevenuePerHourAtRisk = double.Parse(args[++i]) },
         "--observability-spend" => inputs with { ObservabilityAnnualSpend = double.Parse(args[++i]) },
-        "--sources" => args[i].Length > 0 ? (showSources = true) switch { _ => inputs } : inputs,
+        "--sources" => (showSources = true) ? inputs : inputs,
         _ => inputs,
     };
 }
