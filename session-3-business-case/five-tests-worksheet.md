@@ -230,11 +230,11 @@ The test results are what you bring to that fight.
 Turn the gaps into a cost with `cmd/business-case`, using your own numbers:
 
 ```bash
-go run ./cmd/business-case \
-  -engineers 120 -loaded-cost 260000 \
-  -incidents-per-month 14 -mttr-hours 3.5 -responders 3 \
-  -escalation-rate 0.45 -escalation-extra 2 \
-  -unplanned-share 0.22 -observability-spend 350000
+dotnet run --project cmd/business-case/ -- \
+  --engineers 120 --loaded-cost 260000 \
+  --incidents-per-month 14 --mttr-hours 3.5 --responders 3 \
+  --escalation-rate 0.45 --escalation-extra 2 \
+  --unplanned-share 0.22 --observability-spend 350000
 ```
 
 Note that the escalation rate you feed it is the Two-or-Three People Test
