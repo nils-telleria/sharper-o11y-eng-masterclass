@@ -30,8 +30,8 @@ Both paths respect it.
 
 ```bash
 cd ../..                                  # session-2-feedback-loops
-go run ./cmd/seed-canary-regression       # prints the deploy timestamp
 
+dotnet run --project SeedCanaryRegression/SeedCanaryRegression/  # prints the deploy timestamp
 cd honeycomb-setup/scripts
 HONEYCOMB_API_KEY=<config key> ./create-deploy-marker.sh <timestamp>
 ```
