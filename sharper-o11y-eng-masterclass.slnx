@@ -1,0 +1,58 @@
+<Solution>
+  <Folder Name="/session-1-fundamentals/" />
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/DemoTrace/DemoTrace.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/async-boundary/" />
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/async-boundary/after/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/async-boundary/after/AsyncBoundaryAfter.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/async-boundary/before/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/async-boundary/before/AsyncBoundaryBefore.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/context-propagation/" />
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/context-propagation/after/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/context-propagation/after/ContextPropagationAfter.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/context-propagation/before/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/context-propagation/before/ContextPropagationBefore.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/noisy-library/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/noisy-library/VendorLib/VendorLib.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/noisy-library/after/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/noisy-library/after/NoisyLibraryAfter.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/instrumentation-traps/noisy-library/before/">
+    <Project Path="session-1-fundamentals/instrumentation-traps/noisy-library/before/NoisyLibraryBefore.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/otel-quickstart/">
+    <Project Path="session-1-fundamentals/otel-quickstart/OtelQuickstart.Tests/OtelQuickstart.Tests.csproj" />
+    <Project Path="session-1-fundamentals/otel-quickstart/OtelQuickstart/OtelQuickstart.csproj" />
+  </Folder>
+  <Folder Name="/session-1-fundamentals/seed-sample-service/">
+    <Project Path="session-1-fundamentals/seed-sample-service/SeedSampleService.Tests/SeedSampleService.Tests.csproj" />
+    <Project Path="session-1-fundamentals/seed-sample-service/SeedSampleService/SeedSampleService.csproj" />
+  </Folder>
+  <Folder Name="/session-2-feedback-loops/">
+    <Project Path="session-2-feedback-loops/Scenario/Scenario.csproj" />
+  </Folder>
+  <Folder Name="/session-2-feedback-loops/SeedCanaryRegression/">
+    <Project Path="session-2-feedback-loops/SeedCanaryRegression/SeedCanaryRegression.Tests/SeedCanaryRegression.Tests.csproj" />
+    <Project Path="session-2-feedback-loops/SeedCanaryRegression/SeedCanaryRegression/SeedCanaryRegression.csproj" />
+  </Folder>
+  <Folder Name="/session-3-business-case/">
+    <Project Path="session-3-business-case/BusinessCase/BusinessCase.csproj" />
+    <Project Path="session-3-business-case/WideEvent/WideEvent.csproj" />
+  </Folder>
+  <Folder Name="/session-3-business-case/cmd/" />
+  <Folder Name="/session-3-business-case/cmd/business-case/">
+    <Project Path="session-3-business-case/cmd/business-case/BusinessCaseCli.csproj" />
+  </Folder>
+  <Folder Name="/session-3-business-case/cmd/seed-arbitrary-question/">
+    <Project Path="session-3-business-case/cmd/seed-arbitrary-question/SeedArbitraryQuestion/SeedArbitraryQuestion.csproj" />
+  </Folder>
+  <Folder Name="/session-3-business-case/Tests/">
+    <Project Path="session-3-business-case/Tests/Session3.Tests.csproj" />
+  </Folder>
+</Solution>
