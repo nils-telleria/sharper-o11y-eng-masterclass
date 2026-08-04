@@ -76,7 +76,7 @@ public class DeliveryTests
         var cfg = Config.Default with { TraceCount = 100, Now = DateTimeOffset.UtcNow };
         var requests = ScenarioGenerator.Generate(cfg, new Random(99));
 
-        foreach (var req in requests) EmitRequest(activitySource, requests[0]);
+        foreach (var req in requests) EmitRequest(activitySource, req);
         provider.ForceFlush(10_000);
 
         var roots = exported.Where(a => a.ParentSpanId.Equals(default(ActivitySpanId))).ToList();
