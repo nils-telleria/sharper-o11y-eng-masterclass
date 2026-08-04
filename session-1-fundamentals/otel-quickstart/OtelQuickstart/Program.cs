@@ -65,10 +65,7 @@ builder.Services.AddOpenTelemetry()
 
 var app = builder.Build();
 
-app.MapGet("/healthz", (HttpContext ctx) =>
-{
-    Results.Ok();
-});
+app.MapGet("/healthz", () => Results.Ok());
 
 app.MapPost("/api/checkout", async (HttpContext ctx) =>
 {
