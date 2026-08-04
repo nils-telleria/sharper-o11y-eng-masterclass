@@ -33,6 +33,7 @@ public record Config
     {
         EventCount = 20000,
         Window = TimeSpan.FromDays(7),
+        Now = DateTimeOffset.UtcNow,
     };
 }
 
