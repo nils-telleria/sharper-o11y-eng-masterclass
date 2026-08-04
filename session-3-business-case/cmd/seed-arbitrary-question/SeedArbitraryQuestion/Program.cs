@@ -9,8 +9,6 @@ using OpenTelemetry.Trace;
 using WideEvent;
 
 const string ServiceName = "checkout-web";
-const int MaxQueueSize = 8192;
-
 var activitySource = new ActivitySource(ServiceName);
 using var provider = SetupTracing();
 
