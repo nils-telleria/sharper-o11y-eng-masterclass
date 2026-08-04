@@ -20,7 +20,7 @@ records the historical end time rather than the wall-clock time at export.
 
 ## Chunked flushing
 
-Spans are emitted in chunks of 500 with `provider.ForceFlush()` between chunks.
+Spans are emitted in chunks of 400 with `provider.ForceFlush()` between chunks.
 This is required because the `BatchExportActivityProcessor` queue defaults to
 8192 entries. Without chunking, all spans above that limit are dropped silently
 and the seeder exits zero having delivered only a fraction of the dataset.
