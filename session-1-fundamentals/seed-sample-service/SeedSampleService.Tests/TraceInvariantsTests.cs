@@ -57,7 +57,6 @@ public class TraceInvariantsTests
         foreach (var trace in byTrace)
         {
             var traceSpans = trace.ToList();
-            var roots = traceSpans.Where(s => !s.ParentSpanId.Equals(default(ActivitySpanId))).ToList();
             var rootSpan = traceSpans.First(s => s.ParentSpanId.Equals(default(ActivitySpanId)));
 
             var statusCode = rootSpan.GetTagItem("http.response.status_code");
